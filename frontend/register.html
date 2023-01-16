@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register
+    </title>
+</head>
+<body>
+
+    <form action="" > 
+
+        <input id="name" type="text" placeholder="Name" required >
+        <input id="email" type="email" placeholder="Email" required >
+        <input id="password" type="password" placeholder="Password" required>
+        <input  id="gender" type="text" placeholder="Gender" required> 
+        <button>Sign In</button>
+    </form>
+    
+</body>
+</html>
+<script>
+    document.querySelector("button").addEventListener("click" , async (event)=>{
+        event.preventDefault() ;
+        const name = document.getElementById("name").value ;
+        const email = document.getElementById("email").value ;
+        const password = document.getElementById("password").value ;
+        const gender = document.getElementById("gender").value ;
+        let obj = {
+            name , email , gender , password 
+        }
+
+          try{
+            const res = await fetch("http:localhost:2050/users/register" , {
+                method : "POST" , 
+                Headers : {
+                    "Content=Type" : "application/json" 
+                } ,
+                body : JSON.stringify(obj)
+            }) ;
+
+            const result = res.json() ;
+            alert("Signin successfully") ;
+
+          }catch(err){
+            alert("wrong Data") ;
+          }
+
+
+    })
+</script>
